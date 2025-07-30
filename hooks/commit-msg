@@ -30,7 +30,7 @@ fi
 if [ -n "$JOKE" ]; then
     FINAL_JOKE="$JOKE"
     # reset the joke env var
-    $JOKE = ""
+    export $JOKE=""
 else
     # Build URL
     URL="https://v2.jokeapi.dev/joke/$CATEGORY?lang=$LANG$BLACKLIST&format=txt"
