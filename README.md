@@ -12,10 +12,10 @@ Automatically appends a joke to every Git commit message because debugging is be
 
 ### Local (In each repo)
 
+In the repo you want to install it in run:
+
 ```bash
-git clone https://github.com/harryfoster1812/Joke-of-the-Commit.git
-cd Joke-of-the-Commit
-./install.sh
+curl -fsSL https://raw.githubusercontent.com/harryfoster1812/Joke-of-the-Commit/main/install.sh | bash
 ```
 
 This will install the commit-msg hook into your local Git repository.
@@ -23,9 +23,7 @@ This will install the commit-msg hook into your local Git repository.
 ### Globally
 
 ```bash
-git clone https://github.com/harryfoster1812/Joke-of-the-Commit.git
-cd Joke-of-the-Commit
-./install-global-template.sh
+curl -fsSL https://raw.githubusercontent.com/harryfoster1812/Joke-of-the-Commit/main/install-global-template.sh | bash
 ```
 
 This is will add the commit-msg hook to the git template folder. This will make it so that when using `git init` the hook will be automatically installed into the repo
