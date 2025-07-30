@@ -29,9 +29,11 @@ fi
 # If user passed a joke via env var, use it
 if [ -n "$JOKE" ]; then
     FINAL_JOKE="$JOKE"
+    # reset the joke env var
+    $JOKE = ""
 else
     # Build URL
-    URL="https://v2.jokeapi.dev/joke/$CATEGORY?type=single&lang=$LANG$BLACKLIST&format=txt"
+    URL="https://v2.jokeapi.dev/joke/$CATEGORY?lang=$LANG$BLACKLIST&format=txt"
     FINAL_JOKE=$(curl -s "$URL")
 
     # Fallback
