@@ -31,8 +31,8 @@ if [ -n "$JOKE" ]; then
     FINAL_JOKE="$JOKE"
 else
     # Build URL
-    URL="https://v2.jokeapi.dev/joke/$CATEGORY?type=single&lang=$LANG$BLACKLIST"
-    FINAL_JOKE=$(curl -s "$URL" | jq -r '.joke')
+    URL="https://v2.jokeapi.dev/joke/$CATEGORY?type=single&lang=$LANG$BLACKLIST&format=txt"
+    FINAL_JOKE=$(curl -s "$URL")
 
     # Fallback
     [ -z "$FINAL_JOKE" ] && FINAL_JOKE="(No joke fetched — maybe the settings are too restrictive?)"

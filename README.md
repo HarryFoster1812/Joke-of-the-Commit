@@ -1,6 +1,6 @@
 # Joke of the Commit
 
-Automatically appends a joke to every Git commit message — because debugging is better with a little humor.
+Automatically appends a joke to every Git commit message because debugging is better with a little humor.
 
 ## Features
 
