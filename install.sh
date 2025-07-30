@@ -1,15 +1,14 @@
 #!/bin/bash
+set -e
 
-# Copy the commit-msg hook into the current Git repo
-HOOK_DIR=".git/hooks"
-HOOK_FILE="commit-msg"
+HOOK_URL="https://raw.githubusercontent.com/HarryFoster1812/Joke-of-the-Commit/main/hooks/commit-msg"
 
-if [ ! -d "$HOOK_DIR" ]; then
-    echo "Not a Git repository."
-    exit 1
-fi
+# Find actual .git directory of current repo
+GIT_DIR=$(git rev-parse --git-dir)
+HOOK_PATH="$GIT_DIR/hooks/commit-msg"
 
-cp hooks/$HOOK_FILE $HOOK_DIR/$HOOK_FILE
-chmod +x $HOOK_DIR/$HOOK_FILE
+echo "Installing joke commit hook to: $HOOK_PATH"
+curl -fsSL "$HOOK_URL" -o "$HOOK_PATH"
+chmod +x "$HOOK_PATH"
 
 echo "Git joke-of-the-commit hook installed!"
