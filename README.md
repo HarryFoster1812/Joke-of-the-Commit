@@ -13,7 +13,7 @@ Automatically appends a joke to every Git commit message because debugging is be
 ### Local (In each repo)
 
 ```bash
-git clone https://github.com/harryfoster812/Joke-of-the-Commit.git
+git clone https://github.com/harryfoster1812/Joke-of-the-Commit.git
 cd Joke-of-the-Commit
 ./install.sh
 ```
@@ -23,7 +23,7 @@ This will install the commit-msg hook into your local Git repository.
 ### Globally
 
 ```bash
-git clone https://github.com/harryfoster812/Joke-of-the-Commit.git
+git clone https://github.com/harryfoster1812/Joke-of-the-Commit.git
 cd Joke-of-the-Commit
 ./install-global-template.sh
 ```
