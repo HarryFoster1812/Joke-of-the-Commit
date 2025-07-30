@@ -1,0 +1,42 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+CONFIG_FILE="~/.jokehookrc"
+
+# Default values
+CATEGORY="Any"
+BLACKLIST="nsfw,religious,political,racist,sexist,explicit"
+LANG="en"
+
+# If config file exists, read it
+if [ -f "$CONFIG_FILE" ]; then
+    while IFS='=' read -r key value; do
+        key=$(echo "$key" | xargs) # trim
+        value=$(echo "$value" | xargs)
+        case "$key" in
+        category) CATEGORY="$value" ;;
+        blacklist) BLACKLIST="$value" ;;
+        lang) LANG="$value" ;;
+        esac
+    done <"$CONFIG_FILE"
+fi
+
+# URL-encode blacklist if needed
+if [ -n "$BLACKLIST" ]; then
+    BLACKLIST="&blacklistFlags=$(echo $BLACKLIST | tr ',' ',')"
+fi
+
+# If user passed a joke via env var, use it
+if [ -n "$JOKE" ]; then
+    FINAL_JOKE="$JOKE"
+else
+    # Build URL
+    URL="https://v2.jokeapi.dev/joke/$CATEGORY?type=single&lang=$LANG$BLACKLIST"
+    FINAL_JOKE=$(curl -s "$URL" | jq -r '.joke')
+
+    # Fallback
+    [ -z "$FINAL_JOKE" ] && FINAL_JOKE="(No joke fetched — maybe the settings are too restrictive?)"
+fi
+
+# Append joke to commit message
+echo -e "\n\nJoke of the commit:\n$FINAL_JOKE" >>"$COMMIT_MSG_FILE"
